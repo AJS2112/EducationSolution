@@ -10,12 +10,24 @@ namespace Education.Persistence
 {
     public class EducationDbContext:DbContext
     {
+        public EducationDbContext()
+        {
+
+        }
         public EducationDbContext(DbContextOptions<EducationDbContext> options):base(options)
         {
 
         }
 
         public DbSet<Curse> Curses { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            if (!options.IsConfigured)
+            {
+                options.UseSqlServer("Data Source=localhost;Initial Catalog=EducationDb;Integrated Security=True");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

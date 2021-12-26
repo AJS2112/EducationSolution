@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Education.Domain", "Educati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Education.Persistence", "Education.Persistence\Education.Persistence.csproj", "{40CC3622-1B32-42DC-97E5-F491C671407B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Education.Application.NUnitTests", "Education.Application.NUnitTests\Education.Application.NUnitTests.csproj", "{0FD77558-9998-4F07-9D43-C36515B6899A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{40CC3622-1B32-42DC-97E5-F491C671407B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40CC3622-1B32-42DC-97E5-F491C671407B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40CC3622-1B32-42DC-97E5-F491C671407B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FD77558-9998-4F07-9D43-C36515B6899A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FD77558-9998-4F07-9D43-C36515B6899A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FD77558-9998-4F07-9D43-C36515B6899A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FD77558-9998-4F07-9D43-C36515B6899A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

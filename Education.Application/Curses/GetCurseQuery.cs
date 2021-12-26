@@ -1,4 +1,6 @@
-﻿using Education.Domain;
+﻿using AutoMapper;
+using Education.Application.DTO;
+using Education.Domain;
 using Education.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -12,20 +14,23 @@ namespace Education.Application.Curses
 {
     public class GetCurseQuery
     {
-        public class GetCurseQueryRequest : IRequest<List<Curse>> { }
+        public class GetCurseQueryRequest : IRequest<List<CurseDTO>> { }
 
-        public class GetCurseQueryHandler : IRequestHandler<GetCurseQueryRequest, List<Curse>>
+        public class GetCurseQueryHandler : IRequestHandler<GetCurseQueryRequest, List<CurseDTO>>
         {
             private readonly EducationDbContext _context;
-            public GetCurseQueryHandler(EducationDbContext context)
+            private readonly IMapper _mapper;
+            public GetCurseQueryHandler(EducationDbContext context, IMapper mapper)
             {
+                _mapper = mapper;
                 _context = context;
             }
 
-            public async Task<List<Curse>> Handle(GetCurseQueryRequest request, CancellationToken cancellationToken)
+            public async Task<List<CurseDTO>> Handle(GetCurseQueryRequest request, CancellationToken cancellationToken)
             {
                 var curses = await _context.Curses.ToListAsync();
-                return curses;
+                var cursesDto = _mapper.Map<List<Curse>,List<CurseDTO>>(curses);
+                return cursesDto;
             }
         }
     }

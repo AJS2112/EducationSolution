@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoFixture;
 using AutoMapper;
 using Education.Application.NUnitTests.Helper;
@@ -43,15 +44,12 @@ namespace Education.Application.Curses
         }
 
         [Test]
-        public void GetCursoQueryHandler_CurseQuery_ReturnsTrue()
+        public async Task GetCursoQueryHandler_CurseQuery_ReturnsTrue()
         {
-            // 1. Emulate context that represents EF instance
+            var request = new GetCurseQuery.GetCurseQueryRequest();
+            var result = await handlerAllCurses.Handle(request, new System.Threading.CancellationToken());
 
-            // 2. Emulate Mapping Profile
-
-            // 3. Instantiate GetCurseQuery.GetCurseQueryHandler object
-            // GetCursoQueryHandler(_mapping, _context)
-
+            Assert.IsNotNull(result);
         }
     }
 }

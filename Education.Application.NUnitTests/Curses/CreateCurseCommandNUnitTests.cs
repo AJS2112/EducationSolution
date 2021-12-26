@@ -6,15 +6,15 @@ using AutoMapper;
 using Education.Application.NUnitTests.Helper;
 using Education.Domain;
 using Education.Persistence;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 
 namespace Education.Application.Curses
 {
-    [TestFixture]
-    public class GetCurseQueryNUnitTests
+    public class CreateCurseCommandNUnitTests
     {
-        private GetCurseQuery.GetCurseQueryHandler handlerAllCurses;
+        private CreateCurseCommand.CreateCurseCommandHandler handlerCreateCurse;
         [SetUp]
         public void Setup()
         {
@@ -40,16 +40,21 @@ namespace Education.Application.Curses
 
             var mapper = mapConfig.CreateMapper();
 
-            handlerAllCurses = new GetCurseQuery.GetCurseQueryHandler(educationDbContextFake, mapper);
+            handlerCreateCurse = new CreateCurseCommand.CreateCurseCommandHandler(educationDbContextFake);
         }
 
         [Test]
-        public async Task GetCursoQueryHandler_CurseQuery_ReturnsTrue()
+        public async Task CreateCursoCommandHandler_InputCurse_ReturnsNumber()
         {
-            var request = new GetCurseQuery.GetCurseQueryRequest();
-            var result = await handlerAllCurses.Handle(request, new System.Threading.CancellationToken());
+            var request = new CreateCurseCommand.CreateCurseCommandRequest();
+            request.PublishDate = DateTime.UtcNow.AddDays(7);
+            request.Title = "Test Title";
+            request.Description = "Test Description";
+            request.Price = 99;
 
-            Assert.IsNotNull(result);
+            var result = await handlerCreateCurse.Handle(request, new System.Threading.CancellationToken());
+
+            Assert.That(result, Is.EqualTo(Unit.Value));
         }
 
     }
